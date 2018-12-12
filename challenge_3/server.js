@@ -6,8 +6,14 @@ app.use(express.static('public'));
 
 
 
-app.get('/public', (req, res) => {
+app.get('/', (req, res) => {
 	console.log('Hello');
+	res.end();
+})
+
+
+app.post('/', (req, res) => {
+	console.log('World');
 	res.end();
 })
 
