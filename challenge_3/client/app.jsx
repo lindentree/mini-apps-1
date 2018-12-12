@@ -21,18 +21,21 @@ class App extends React.Component {
 class FormOneName extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {contact: {name:"", email:"", password:""}};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleChange(property, event) {
+  	const contact = this.state.contact;
+  	contact[property] = event.target.value
+    this.setState({ contact: contact });
+
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    console.log('A form was submitted: ' + this.state.contact.email);
     event.preventDefault();
   }
 
@@ -41,7 +44,15 @@ class FormOneName extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input type="text" value={this.state.contact.name} onChange={this.handleChange.bind(this, 'name')} />
+        </label>
+        <label>
+          E-mail:
+          <input type="text" value={this.state.contact.email} onChange={this.handleChange.bind(this, 'email')} />
+        </label>
+        <label>
+          Password:
+          <input type="text" value={this.state.contact.password} onChange={this.handleChange.bind(this, 'password')} />
         </label>
         <input type="submit" value="Submit" />
       </form>
