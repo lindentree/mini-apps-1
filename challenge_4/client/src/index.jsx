@@ -1,22 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-// class ConnectFourRow extends React.Component {
-//    render() {
-//    	 return (
-//        <div>
-//          <h1> Hello world! </h1>
-//        </div>
-
-//    	 	);
-//    }
-
-// }
-
-
 class Board extends React.Component {
   renderSquare(val) {
     return <Square value={val} />;
+  }
+
+  renderRow(val) {
+  	return (<div className="board-row">
+          {Array(7).fill(1).map((el, i) =>
+            this.renderSquare(null) 
+          )}
+        </div>
+        )
   }
 
   render() {
@@ -24,61 +20,12 @@ class Board extends React.Component {
 
     return (
       <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-          {this.renderSquare(null)}
-        </div>
+        {this.renderRow(null)}
+        {this.renderRow(null)}
+        {this.renderRow(null)}
+        {this.renderRow(null)}
+        {this.renderRow(null)}
+        {this.renderRow(null)}
       </div>
     );
   }
