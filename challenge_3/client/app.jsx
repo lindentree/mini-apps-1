@@ -5,13 +5,19 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = "";
+    this.state = {pagelevel: 0,
+                  forms: {
+                  	formOne: {
+                  		contact: {name:"", email:"", password:""}
+                  	}
+                  }
+                 }
   }	
   render() {
 
   	return (
              <div> 
-               <FormOneName />
+               <FormOneName template={this.state.forms.formOne}/>
              </div>
 
   		   ) 
@@ -21,7 +27,8 @@ class App extends React.Component {
 class FormOneName extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {contact: {name:"", email:"", password:""}};
+    this.state = this.props.template;
+  
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,6 +47,7 @@ class FormOneName extends React.Component {
   }
 
   render() {
+  	console.log(this.props)
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
