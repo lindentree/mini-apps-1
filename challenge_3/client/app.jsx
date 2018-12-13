@@ -13,6 +13,9 @@ class App extends React.Component {
                   	formTwo: {
                   		address:{line1:""}
                   	},
+                  	formThree: {
+                  		creditCard:[]
+                  	},
                   }
                  }
 
@@ -22,10 +25,9 @@ class App extends React.Component {
 
   handler(prevState) {
      this.setState(function(prevState, props){
-     	 
-     	 var newState = prevState.pageLevel + 1;
+       var newState = prevState.pageLevel + 1;
      	 console.log('new state', newState)
-      return {pageLevel: newState}
+        return {pageLevel: newState}
    })
     
   }
@@ -44,6 +46,13 @@ class App extends React.Component {
      	  return (
              <div> 
                <FormTwoAddress master={this.state} placeholder={this.state.forms.formTwo} handler={this.handler}/>
+             </div>
+
+  		   );
+     	case 2:
+     	  return (
+             <div> 
+               <FormThreePayment master={this.state} check={this.state.forms.formThree} handler={this.handler}/>
              </div>
 
   		   );
@@ -143,5 +152,42 @@ class FormTwoAddress extends React.Component {
     );
   }
 }
+
+class FormThreePayment extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = this.props.check;
+  
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(property, event) {
+  	const creditCard = this.state.creditCard;
+  	creditCard.push(event.target.value);
+    this.setState({ creditCard: creditCard });
+
+  }
+
+  handleSubmit(event) {
+    console.log('A form was submitted: ' + this.props.master.pageLevel);
+    event.preventDefault();
+    this.props.handler(this.props.master);
+  }
+
+  render() {
+  	console.log(this.props)
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Credit Card Number
+          <input type="text" value={this.state.creditCard} onChange={this.handleChange.bind(this, 'creditCard')} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
 ReactDOM.render(<App />, document.getElementById('app'));
 
