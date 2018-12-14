@@ -22,13 +22,13 @@ class Column extends React.Component {
 
     render() {
     	return (
-          <div>
-            {this.renderSquare(null)}
-            {this.renderSquare(null)}
-            {this.renderSquare(null)}
-            {this.renderSquare(null)}
-            {this.renderSquare(null)}
-            {this.renderSquare(null)}
+          <div id="outer">
+            <div>{this.renderSquare(null)}</div>
+            <div>{this.renderSquare(null)}</div>
+            <div>{this.renderSquare(null)}</div>
+            <div>{this.renderSquare(null)}</div>
+            <div>{this.renderSquare(null)}</div>
+            <div>{this.renderSquare(null)}</div>
           </div>
         )
     }
